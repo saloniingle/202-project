@@ -1,0 +1,93 @@
+<div >
+  <mat-toolbar> COURSES
+</mat-toolbar>
+</div>
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+
+<div *ngIf="userType=='admin'">
+<mat-toolbar>
+<h4>Faculties</h4>
+<mat-form-field>
+  <mat-label>Select faculty</mat-label>
+  <mat-select [(ngModel)]="selectedFacultyID">
+    @for (faculty of faculties; track faculty) {
+      <mat-option [value]="faculty.value">{{faculty.label}}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
+
+<h4>Semester</h4>
+<mat-form-field>
+  <mat-label>Select the Semester</mat-label>
+  <mat-select [(ngModel)]="selectedSemester"  id="mySelectId">
+    <mat-option value="spring">Spring</mat-option>
+    <mat-option selected value ="fall">Fall</mat-option>
+    <mat-option value="summer">Summer</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<h4>Year</h4>
+<mat-form-field>
+  <mat-label>Select the Year</mat-label>
+  <mat-select [(ngModel)]="selectedYear" id="mySelectId1">
+    <mat-option value=2022>2022</mat-option>
+    <mat-option value=2023>2023</mat-option>
+    <mat-option selected value =2024>2024</mat-option>
+    <mat-option value=2025>2025</mat-option>
+  </mat-select>
+</mat-form-field>
+&nbsp;&nbsp;
+<div *ngIf="selectedRadioValue === 1" >
+<h4 class="course">Course</h4>
+<mat-form-field class="course-input">
+  <mat-label>Course name</mat-label>
+  <input matInput [(ngModel)]="courseName" placeholder="Course 1">
+</mat-form-field>
+</div>
+&nbsp;&nbsp;
+  <div *ngIf="selectedRadioValue === 1" class="mr-2">
+    <mat-checkbox [(ngModel)]="publishCourse" >Publish Course</mat-checkbox>
+  </div>
+<div *ngIf="selectedRadioValue === 2">
+<button mat-flat-button (click)="searchCourses()" [disabled]="!selectedFacultyID || !selectedYear || !selectedSemester">Filter</button>
+</div>
+<div *ngIf="selectedRadioValue === 1">
+  <button mat-flat-button [disabled]="!selectedFacultyID || !selectedYear || !selectedSemester || !courseName"  (click)="submitCourse()">Submit</button>
+</div>
+
+
+</mat-toolbar>
+<div>
+  <mat-radio-group (change)="onChange($event)" aria-label="Select an option">
+    <mat-radio-button [value]="1">Add new Course</mat-radio-button>
+    <mat-radio-button [value]="2" >Search</mat-radio-button>
+  </mat-radio-group>
+</div>
+</div>
+    <div id="cards" class="container responsive-grid" *ngIf="courses.length > 0">
+      <mat-card *ngFor="let course of courses" class="p-2 border-4">
+        <mat-card-header>
+          <mat-card-title>{{ course.name }} </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            {{ course.year }} - {{ course.semester }}
+          </p>
+          <br>
+          <p class="text-xs font-bold decoration-gray-900"> {{course.isPublished ? "Published" : "Not Published"}} </p>
+        </mat-card-content>
+        <br>
+        <mat-card-actions>
+          <button mat-flat-button color="primary" (click)="onClick(course.courseID)" >Go to Course</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+<notifier-container></notifier-container>

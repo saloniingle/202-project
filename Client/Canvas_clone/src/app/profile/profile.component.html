@@ -1,0 +1,40 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <ngx-spinner
+    bdColor="rgba(51,51,51,0.8)"
+    size="medium"
+    color="#fff"
+    type="ball-scale-multiple"
+  >
+    <p style="font-size: 20px; color: white">Loading...</p>
+  </ngx-spinner>
+
+  <h1>Profile Form</h1>
+    <div>
+      <label for="first name">First Name:</label>
+      <input type="text" id="first name" formControlName="firstname">
+      <div *ngIf="profileForm.controls['firstname']['invalid'] && (profileForm.controls['firstname']['dirty'] || profileForm.controls['firstname']['touched'])">
+        Please provide a firstname.
+      </div>
+    </div>
+    <div>
+      <label for="last name">Last Name:</label>
+      <input type="text" id="last name" formControlName="lastname">
+      <div *ngIf="profileForm.controls['lastname']['invalid'] && (profileForm.controls['lastname']['dirty'] || profileForm.controls['lastname']['touched'])">
+        Please provide a lastname.
+      </div>
+    </div>
+
+    <div>
+      <label for="username" >Username:</label>
+      <input type="text" formControlName="username">
+      <div *ngIf="profileForm.controls['username']['invalid'] && (profileForm.controls['username']['dirty'] || profileForm.controls['username']['touched'])">
+        Please provide a username.
+      </div>
+    </div>
+
+    <div>
+        <mat-slide-toggle formControlName="isNotificationEnabled">Notifications</mat-slide-toggle>
+    </div>
+    <button mat-flat-button type="submit" color="primary" [disabled]="profileForm.invalid">Save</button>
+  </form>
+<notifier-container></notifier-container>

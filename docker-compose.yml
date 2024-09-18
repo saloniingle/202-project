@@ -1,0 +1,10 @@
+version: '1'
+services:
+  backend:
+    build: ./Server
+    ports:
+      - 8080:8080
+    expose:
+      - 8080
+    volumes:
+      - ./Server:/app

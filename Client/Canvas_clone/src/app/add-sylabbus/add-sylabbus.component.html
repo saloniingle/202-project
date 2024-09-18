@@ -1,0 +1,14 @@
+<mat-dialog-content >
+  <p class="my-2">Add Syllabus</p>
+  <form [formGroup]="syllabusForm" (ngSubmit)="onsubmit()">
+<br>
+    <div class="w-full">
+      <textarea class="w-full" [rows]="8"  type="text" formControlName="body" ></textarea>
+    </div>
+    <br>
+    <mat-dialog-actions>
+      <button mat-raised-button color="primary"  type="submit" [disabled]="!syllabusForm.valid" >Submit</button>
+      <button mat-raised-button color="primary" (click)="closeModal()" >Cancel</button>
+    </mat-dialog-actions>
+  </form>
+</mat-dialog-content>

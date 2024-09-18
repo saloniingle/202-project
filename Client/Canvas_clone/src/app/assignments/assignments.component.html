@@ -1,0 +1,23 @@
+<div class="ml-4">
+<div>
+    <h1 class="course-title text-2xl font-extrabold" *ngIf="course!=null">
+      {{course.name.toUpperCase()}} - {{course.semester.toUpperCase()}} {{course.year}}
+    </h1>
+</div>
+<hr>
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+<h3 class="font-extrabold underline text-lg" style="margin-top: 30px;"> Assignments for the course </h3>
+<button mat-raised-button color="primary" (click)="openModal()" style="margin-top: 10px;" *ngIf="userType === 'faculty'">Add Assignment</button>
+
+<ul class="list-disc ml-5" style="margin-top: 30px;" *ngFor="let assignment of assignments">
+  <li><a [href]="'/courses/' + courseId + '/assignments/' + assignment.id">{{assignment.title}}</a></li>
+</ul>
+</div>
+

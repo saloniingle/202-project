@@ -1,0 +1,18 @@
+.container {
+  padding: 24px;
+}
+
+.responsive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 24px;
+}
+.mat-mdc-radio-button {
+  margin-left: 295px;
+}
+.checked-box{
+  padding-left: 660%;
+}
+.course-input{
+  margin-bottom: 33px;
+}

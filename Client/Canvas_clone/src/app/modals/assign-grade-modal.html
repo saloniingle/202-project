@@ -1,0 +1,13 @@
+<mat-dialog-content class="w-full">
+  <form [formGroup]="assignGradeForm" (ngSubmit)="onsubmit()">
+    <br>
+    <mat-form-field class="w-full">
+      <mat-label>Enter Grade for {{studentName}}</mat-label>
+      <input type="number" matInput matNativeControl placeholder="Grade" formControlName="grade">
+    </mat-form-field>
+    <br>
+    <mat-dialog-actions>
+      <button  mat-flat-button mat-dialog-close color="primary" [mat-dialog-close]="assignGradeForm.value.grade && assignGradeForm.value.grade >= maxGrade" cdkFocusInitial [disabled]="!assignGradeForm.valid" type="submit">Submit</button>
+    </mat-dialog-actions>
+  </form>
+</mat-dialog-content>

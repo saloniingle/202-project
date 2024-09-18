@@ -1,0 +1,51 @@
+<div class="ml-5">
+  <div>
+    <h1 class="course-title text-2xl font-extrabold" *ngIf="course!=null">
+      {{course.name.toUpperCase()}} - {{course.semester.toUpperCase()}} {{course.year}}
+    </h1>
+</div>
+<hr>
+
+  <div  *ngIf="userType != 'student' && students.length === 0">
+    <p>No students found for this course.</p>
+  </div>
+  <div style="margin-top: 30px;" *ngIf="sylabbus!=null">
+    <h2 class="font-bold">Syllabus </h2>
+    <ul>
+      <li>
+        {{sylabbus.Content}}
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="(userType === 'faculty' || userType === 'student') && sylabbus===null">
+    <p>Syllabus not found for this course</p>
+  </div>
+
+  <button mat-raised-button color="primary" (click)="openModal()" style="margin-top: 10px;" *ngIf="userType === 'faculty'">Add/Update Syllabus</button>
+
+<div class="links text-purple-950" *ngIf="userType === 'faculty' || userType==='student'">
+
+  <a [href]="'/courses/' + courseId + '/assignments'">Assignments</a>
+  &nbsp;&nbsp;
+  <a [href]="'/courses/' + courseId + '/announcements'">Announcements</a>
+  &nbsp;&nbsp;
+  <a [href]="'/courses/' + courseId + '/quizzes'">Quizzes</a>
+
+</div>
+
+  <div style="margin-top: 30px;" *ngIf="userType != 'student' && students.length">
+    <h2 class="font-bold">Students Enrolled in the Course</h2>
+    <ul class="list-decimal ml-5">
+      <li *ngFor="let student of students">
+        {{ student.first_name }} {{ student.last_name }}
+      </li>
+    </ul>
+  </div>
+
+
+</div>
+
+
+
+
+

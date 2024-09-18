@@ -1,0 +1,28 @@
+<mat-dialog-content >
+    <p class="my-2">Add Assignment</p>
+    <form [formGroup]="assignmentForm" (ngSubmit)="onsubmit()">
+      <div>
+        <mat-form-field class="w-full">
+        <p>Topic</p>
+        <input style="padding:15px;width: 69% ;" matInput placeholder="Assignment topic"  formControlName="title">
+      </mat-form-field>
+    </div>
+      <div>
+        <mat-form-field class="w-full">
+          <p>Content</p>
+        <textarea [rows]="8"  style="padding: 50px;width:60%;" type="text" formControlName="description" ></textarea>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="w-full">
+        <p>Maximum Grade</p>
+        <input style="padding:10px;width: 70% ;"  type="number" matInput placeholder="Enter a number"  formControlName="grade">
+      </mat-form-field>
+    </div>
+      <br>
+      <mat-dialog-actions>
+        <button mat-raised-button type="submit" [disabled]="!assignmentForm.valid"  style="background-color: rgba(45, 45, 209, 0.932); color: white;"  >Submit</button>
+        <button mat-raised-button (click)="closeModal()" style="margin-left: 15px;" >Cancel</button>
+      </mat-dialog-actions>
+    </form>
+  </mat-dialog-content>

@@ -1,0 +1,34 @@
+<div class="ml-5">
+    <div *ngIf="quiz.title" style="display: flex; justify-content: center;margin-top: 30px; font-weight: bolder;font-size: larger;">
+      <h1>{{ quiz.title }} </h1>
+    </div>
+    <div style="display: flex;justify-content: center;margin-top: 10px;" >
+      <p> {{ quiz.description }}</p>
+    </div>
+
+    <div *ngIf="userType=='student'">
+        <p> Grade - {{student.grade ==null ? 'Not graded' : student.grade}} / {{student.maxGrade}}</p>
+    </div>
+
+    <div *ngIf="userType=='faculty'" style="margin-top: 30px; font-weight: 900;">
+    <h2> Students List </h2>
+
+      <p *ngIf="students.length==0"> No students enrolled to this course</p>
+    <div style="margin-top: 30px;" *ngIf="students.length">
+      <ul class="list-decimal ml-5">
+        <li *ngFor="let student of students">
+          {{ student.firstName }} {{ student.lastName }}
+
+          Grade - {{student.grade === null ? 'Not graded' : student.grade}} / {{student.maxGrade}}
+          <button *ngIf="student.grade === null" mat-flat-button color="primary" class="my-5" (click)="openDialog( student.firstName + student.lastName, student.enrollmentId, student.maxGrade)">Add grade</button>
+        </li>
+      </ul>
+    </div>
+    </div>
+  </div>
+<notifier-container></notifier-container>
+
+
+
+
+

@@ -1,0 +1,27 @@
+
+  <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+    <mat-toolbar color="primary" class="example-toolbar">
+      <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+      <h1 class="example-app-name">Canvas App</h1>
+    </mat-toolbar>
+
+    <mat-sidenav-container class="example-sidenav-container"
+                           [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+      <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+                   [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" >
+        <mat-nav-list >
+          @for (nav of sideNavOptions; track nav) {
+            <a class="block p-4" routerLink="/{{nav.link}}"  [routerLinkActive]="['active-link']"  >{{nav.link.toLocaleUpperCase()}}</a>
+          }
+        </mat-nav-list>
+        <mat-nav-list *ngIf="authenticationService.loggedIn">
+            <button (click)="logout()" mat-list-item >Logout</button>
+        </mat-nav-list>
+      </mat-sidenav>
+
+      <mat-sidenav-content>
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+
